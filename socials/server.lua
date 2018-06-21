@@ -7,24 +7,19 @@ local snapmatic_webhook = "REPLACE ME IF ABOVE IS 1"
  
 AddEventHandler('chatMessage', function(source, name, args) 
   sm = stringsplit(args, " "); 
-  if tablelength(sm) < 3 then
-    CancelEvent() 
-    if sm[1] == "/lv" then
-        TriggerClientEvent('invalidArgs', source, 'lv')
-    elseif sm[1] == "/tweet" then
-        TriggerClientEvent('invalidArgs', source, 'tweet')
-    elseif sm[1] == "/snapmatic" then
-        TriggerClientEvent('invalidArgs', source, 'snapmatic')
-    end
-  else
+  
     if sm[1] == "/lv" then 
-            CancelEvent()
+        CancelEvent()
+        if tablelength(sm) < 4 then
+            CancelEvent() 
+            TriggerClientEvent('invalidArgs', source, 'lv')
+        else
             local username = sm[2] .. ' ' .. sm[3] 
-    
+
             table.remove(sm, 1) 
             table.remove(sm, 1) 
             table.remove(sm, 1) 
-    
+
             local message = table.concat(sm, " ") 
             
             if lifeinvader_webhook_enabled == 1 then 
@@ -34,14 +29,19 @@ AddEventHandler('chatMessage', function(source, name, args)
             end 
 
             TriggerClientEvent('chatMessage', -1, "^0[^1Life^0invader] ^0(" .. name .. ") ^3" .. username, { 128, 128, 128 }, message) 
-        elseif sm[1] == "/tweet" then 
+        end
+    elseif sm[1] == "/tweet" then 
+        CancelEvent() 
+        if tablelength(sm) < 4 then
             CancelEvent() 
+            TriggerClientEvent('invalidArgs', source, 'tweet')
+        else
             local username = sm[2] .. ' ' .. sm[3] 
-    
+
             table.remove(sm, 1) 
             table.remove(sm, 1) 
             table.remove(sm, 1) 
-    
+
             local message = table.concat(sm, " ") 
             
             if tweet_webhook_enabled == 1 then 
@@ -49,16 +49,21 @@ AddEventHandler('chatMessage', function(source, name, args)
                 tw_wh_content = "**Twitter** " ..name.. " used Twitter command: **" .. message .. "**" 
                 PerformHttpRequest(tweet_webhook, process, "POST", "content=".. tw_wh_content) 
             end 
-    
+
             TriggerClientEvent('chatMessage', -1, "^0[^4Twitter^0] ^0(" .. name .. ") ^3" .. username, { 128, 128, 128 }, message) 
-        elseif sm[1] == "/snapmatic" then 
+        end
+    elseif sm[1] == "/snapmatic" then 
+        CancelEvent() 
+        if tablelength(sm) < 4 then
             CancelEvent() 
+            TriggerClientEvent('invalidArgs', source, 'snapmatic')
+        else
             local username = sm[2] .. ' ' .. sm[3] 
-    
+
             table.remove(sm, 1) 
             table.remove(sm, 1) 
             table.remove(sm, 1) 
-    
+
             local message = table.concat(sm, " ") 
             
             if snapmatic_webhook_enabled == 1 then 
@@ -66,12 +71,12 @@ AddEventHandler('chatMessage', function(source, name, args)
                 sm_wh_content = "**Scapmatic** " ..name.. " used Snapmatic command: **" .. message .. "**" 
                 PerformHttpRequest(snapmatic_webhook, process, "POST", "content=".. sm_wh_content) 
             end 
-    
+
             TriggerClientEvent('chatMessage', -1, "^0[^6Snapmatic^0] ^0(" .. name .. ") ^3" .. username, { 128, 128, 128 }, message) 
-        elseif sm[1] == "/social-help" then 
-            CancelEvent() 
-            TriggerClientEvent('socialHelp', source) 
-        end 
+        end
+    elseif sm[1] == "/social-help" then 
+        CancelEvent() 
+        TriggerClientEvent('socialHelp', source) 
     end
 end) 
  
