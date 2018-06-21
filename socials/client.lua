@@ -9,8 +9,9 @@ RegisterCommand('lv', function(source, args)
     local message = table.concat(args, " ")
     
     TriggerServerEvent('webhook:lifeinvader', name, message)
+    TriggerServerEvent('command:lifeinvader', name, username, message)
     
-    TriggerEvent('chatMessage', "^0[^1Life^0invader] ^0(" .. name .. ") ^3" .. username .. '^0: ' .. message)
+    --TriggerEvent('chatMessage', "^0[^1Life^0invader] ^0(" .. name .. ") ^3" .. username .. '^0: ' .. message)
 end, false)
 
 RegisterCommand('tweet', function(source, args)
@@ -23,8 +24,9 @@ RegisterCommand('tweet', function(source, args)
     local message = table.concat(args, " ")
 
     TriggerServerEvent('webhook:twitter', name, message)
-    
-    TriggerEvent('chatMessage', "^0[^4Twitter^0] ^0(" .. name .. ") ^3" .. username .. '^0: ' .. message)
+    TriggerServerEvent('command:twitter', name, username, message)
+
+    --TriggerEvent('chatMessage', "^0[^4Twitter^0] ^0(" .. name .. ") ^3" .. username .. '^0: ' .. message)
 end, false)
 
 RegisterCommand('snapmatic', function(source, args)
@@ -37,8 +39,9 @@ RegisterCommand('snapmatic', function(source, args)
     local message = table.concat(args, " ")
 
     TriggerServerEvent('webhook:snapmatic', name, message)
+    TriggerServerEvent('command:snapmatic', name, username, message)
     
-    TriggerEvent('chatMessage', "^0[^6Snapmatic^0] ^0(" .. name .. ") ^3" .. username .. '^0: ' .. message)
+    --TriggerEvent('chatMessage', "^0[^6Snapmatic^0] ^0(" .. name .. ") ^3" .. username .. '^0: ' .. message)
 end, false)
 
 -- Shows the help information
