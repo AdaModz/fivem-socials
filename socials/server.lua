@@ -31,3 +31,5 @@ AddEventHandler('webhook:snapmatic', function(name, message)
         PerformHttpRequest(snapmatic_webhook, process, "POST", "content=".. sm_wh_content)
     end
 end)
+
+print('Socials > Successfully Loaded')
