@@ -80,7 +80,7 @@ AddEventHandler('chatMessage', function(source, name, args)
         CancelEvent() 
         if tablelength(sm) < 2 then
             CancelEvent() 
-            TriggerClientEvent('invalidArgs', source, 'snapmatic')
+            TriggerClientEvent('invalidArgs', source, 'uber')
         else
             table.remove(sm, 1) 
 
