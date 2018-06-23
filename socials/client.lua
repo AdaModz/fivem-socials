@@ -9,8 +9,12 @@ AddEventHandler('socialHelp', function() -- adds an event handler so it can be r
 end)
 
 RegisterNetEvent('invalidArgs')
-AddEventHandler('invalidArgs', function(platform)
-    drawNotification("~r~Invalid Arguments~w~: e.g. /" .. platform .. " (first name) (last name) (message)")
+AddEventHandler('invalidArgs', function(platform, names)
+    if names then
+        drawNotification("~r~Invalid Arguments~w~: e.g. /" .. platform .. " (first name) (last name) (message)")
+    else
+        drawNotification("~r~Invalid Arguments~w~: e.g. /" .. platform .. " (message)")
+    end
 end)
 
 function drawNotification(text) --Just Don't Edit!

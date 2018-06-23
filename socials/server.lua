@@ -8,7 +8,7 @@ AddEventHandler('chatMessage', function(source, name, args)
         CancelEvent()
         if tablelength(sm) < 4 then
             CancelEvent() 
-            TriggerClientEvent('invalidArgs', source, 'lv')
+            TriggerClientEvent('invalidArgs', source, 'lv', true)
         else
             local username = sm[2] .. ' ' .. sm[3] 
 
@@ -32,7 +32,7 @@ AddEventHandler('chatMessage', function(source, name, args)
         CancelEvent() 
         if tablelength(sm) < 4 then
             CancelEvent() 
-            TriggerClientEvent('invalidArgs', source, 'tweet')
+            TriggerClientEvent('invalidArgs', source, 'tweet', true)
         else
             local username = sm[2] .. ' ' .. sm[3] 
 
@@ -56,7 +56,7 @@ AddEventHandler('chatMessage', function(source, name, args)
         CancelEvent() 
         if tablelength(sm) < 4 then
             CancelEvent() 
-            TriggerClientEvent('invalidArgs', source, 'snapmatic')
+            TriggerClientEvent('invalidArgs', source, 'snapmatic', true)
         else
             local username = sm[2] .. ' ' .. sm[3] 
 
@@ -80,7 +80,7 @@ AddEventHandler('chatMessage', function(source, name, args)
         CancelEvent() 
         if tablelength(sm) < 2 then
             CancelEvent() 
-            TriggerClientEvent('invalidArgs', source, 'uber')
+            TriggerClientEvent('invalidArgs', source, 'uber', false)
         else
             table.remove(sm, 1) 
 
