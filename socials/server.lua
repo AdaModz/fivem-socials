@@ -74,6 +74,24 @@ AddEventHandler('chatMessage', function(source, name, args)
 
             TriggerClientEvent('chatMessage', -1, "^0[^6Snapmatic^0] ^0(" .. name .. ") ^3" .. username, { 128, 128, 128 }, message) 
         end
+    elseif sm[1] == "/uber" then 
+        CancelEvent() 
+        if tablelength(sm) < 4 then
+            CancelEvent() 
+            TriggerClientEvent('invalidArgs', source, 'snapmatic')
+        else
+                  table.remove(sm, 1) 
+
+            local message = table.concat(sm, " ") 
+            
+            if snapmatic_webhook_enabled == 1 then 
+                -- Send message to discord to say that the Lifeinvader command was used. 
+                sm_wh_content = "**Uber** " ..name.. " used Uber command: **" .. message .. "**" 
+                PerformHttpRequest(snapmatic_webhook, process, "POST", "content=".. sm_wh_content) 
+            end 
+
+            TriggerClientEvent('chatMessage', -1, "^0[^8Uber^0] ^0(" .. name .. ") ^3", { 128, 128, 128 }, message) 
+        end
     elseif sm[1] == "/social-help" then 
         CancelEvent() 
         TriggerClientEvent('socialHelp', source) 
