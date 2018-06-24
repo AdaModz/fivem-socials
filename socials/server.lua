@@ -1,5 +1,5 @@
-local discord_webhook_enabled = 1
-local discord_webhook_url = "https://discordapp.com/api/webhooks/460187757265027107/9V3_yhBuEJXTtlPKN8eo6KlPywZg2sXwuem4rUeV7MQZB8uQvyGxCVuAMf8guoI6eRPD" 
+local discord_webhook_enabled = 0
+local discord_webhook_url = "REPLACE ME IF ABOVE IS 1" 
  
 AddEventHandler('chatMessage', function(source, name, args) 
   sm = stringsplit(args, " "); 
