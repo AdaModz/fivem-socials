@@ -6,6 +6,7 @@ AddEventHandler('socialHelp', function() -- adds an event handler so it can be r
     drawNotification("~b~Twitter~w~: /tweet (first name) (last name) (message)")
     drawNotification("~p~Snapmatic~w~: /snapmatic (first name) (last name) (message)")
     drawNotification("~r~Uber~w~: /uber (message)")
+    drawNotification("~r~Uber~w~: /blackmarket (message)")
 end)
 
 RegisterNetEvent('invalidArgs')

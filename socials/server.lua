@@ -123,6 +123,26 @@ AddEventHandler('chatMessage', function(source, name, args)
     
             TriggerClientEvent('chatMessage', -1, "^0[^1SMS^0] ^0(" .. name .. ") ^3" .. from_name .. ' ^0>^3 ' .. to_name, { 128, 128, 128 }, message) 
         end
+    elseif sm[1] == "/blackmarket" then 
+        CancelEvent() 
+        if tablelength(sm) < 2 then
+            CancelEvent() 
+            TriggerClientEvent('invalidArgs', source, 'blackmarket', false)
+        else
+            table.remove(sm, 1) 
+
+            local message = table.concat(sm, " ") 
+            
+            if discord_webhook_enabled == 1 then 
+                -- Send message to discord to say that the Lifeinvader command was used. 
+                wh_content = name.. " used the Blackmarket command: **" .. message .. "**" 
+                --PerformHttpRequest(uber_webhook, process, "POST", "content=".. sm_wh_content) 
+                local image = "https://images-na.ssl-images-amazon.com/images/I/41kQPEy5nZL._SY355_.jpg"
+                PerformHttpRequest(discord_webhook_url, function(Error, Content, Head) end, 'POST', json.encode({username = 'Blackmarket', content = wh_content, avatar_url = image, tts = false}), {['Content-Type'] = 'application/json'})
+            end 
+
+            TriggerClientEvent('chatMessage', -1, "^0[^1Black Market^0] ^0(" .. name .. ") ^3", { 128, 128, 128 }, message) 
+        end
     elseif sm[1] == "/social-help" then 
         CancelEvent() 
         TriggerClientEvent('socialHelp', source) 
